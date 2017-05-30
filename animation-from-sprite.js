@@ -5,8 +5,10 @@ class SpriteAnimator extends HTMLElement{
         this.rows = this.getAttribute('rows') || 0
         this.cols = this.getAttribute('cols') || 0
         this.img = document.createElement('img')
-        this.delay = parseInt()
+        this.delay = this.getAttribute('delay') || 100
         this.state = {x:0,y:0}
+        const shadow = this.attachShadow({mode:'open'})
+        shadow.appendChild(this.img)
     }
     setState(obj) {
         this.state = Object.assign({},this.state,obj)
@@ -30,7 +32,7 @@ class SpriteAnimator extends HTMLElement{
         context.drawImage(this.image,0,0)
         context.restore()
         x += spriteW
-        if(x > = w) {
+        if(x >= w) {
             x = 0
             y += spriteH
             if(y >= h) {
